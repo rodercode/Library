@@ -4,7 +4,8 @@ of books and keep track of library operations. This application provides a range
 the daily tasks involved in library management
 
 
-![roberto-nickson-emqnSQwQQDo-unsplash](https://github.com/rodercode/hotell-xandic/assets/54941923/02ca62b5-5dd5-4a3d-9112-a219d28aeda8)
+![tom-hermans-9BoqXzEeQqM-unsplash](https://github.com/rodercode/Library/assets/54941923/bb6af2dc-d98c-4b32-8e8b-30094cd2d9f2)
+
 
 
 ## Features under development
@@ -25,4 +26,4 @@ Follow these steps to set up and run the XandicLifehub application:
 1. Clone this repository to your local machine:
 
    ```bash
-   https://github.com/rodercode/hotell-xandic.git
+   https://github.com/rodercode/Library.git
