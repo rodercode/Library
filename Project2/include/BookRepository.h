@@ -28,4 +28,5 @@ public:
     ~BookRepository();
 
     void execute(string query);
+    vector<Book> getAll();
 };
