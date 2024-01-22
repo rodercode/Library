@@ -35,6 +35,7 @@ public:
 
 // Global variables
 int choice;
+BookService bookService;
 
 // Main
 int main() {
