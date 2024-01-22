@@ -7,7 +7,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
-#include "../include/BookRepository.h"
+
 
 using
 std::cout,
@@ -30,12 +30,21 @@ public:
 	}
 };
 
-bool isRunning = true;
+
+
+
+// Global variables
+int choice;
 
 // Main
 int main() {
 	
 	displayMenu();
+	getUserInput(choice);
+
+	if (choice == 1) {
+		cout << endl;
 		displayBooks(bookService.getAll());
+	}
 	return 0;
 }

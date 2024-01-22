@@ -23,3 +23,6 @@ void displayMenu() {
 	cout << "Enter your choice (1-4): ";
 }
 
+void getUserInput(int& choice) {
+	cin >> choice;
+}
