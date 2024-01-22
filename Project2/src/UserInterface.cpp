@@ -13,3 +13,13 @@ void displayBooks(vector<Book> books) {
 	}
 
 }
+
+void displayMenu() {
+	cout << "Book Library Menu\n";
+	cout << "1. Get All Books\n";
+	cout << "2. Create Book\n";
+	cout << "3. Delete Book\n";
+	cout << "4. Exit\n\n";
+	cout << "Enter your choice (1-4): ";
+}
+

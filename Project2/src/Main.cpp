@@ -34,6 +34,8 @@ bool isRunning = true;
 
 // Main
 int main() {
+	
+	displayMenu();
 		displayBooks(bookService.getAll());
 	return 0;
 }
