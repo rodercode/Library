@@ -1,3 +1,7 @@
+// Include header files
+#include "../include/BookRepository.h"
+#include "../include/UserInterface.h"
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -30,5 +34,6 @@ bool isRunning = true;
 
 // Main
 int main() {
+		displayBooks(bookService.getAll());
 	return 0;
 }

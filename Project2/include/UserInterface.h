@@ -12,3 +12,5 @@ using
 	std::cin,
 	std::vector;
 
+//Methods
+void displayBooks(vector<Book> books);
