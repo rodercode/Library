@@ -3,7 +3,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
-#include "../include/Book.h"
+#include "../include/BookRepository.h"
 
 using
 std::cout,
@@ -13,6 +13,18 @@ std::string,
 std::vector,
 std::istringstream,
 std::ios;
+
+class BookService {
+private:
+		BookRepository bookRepository;
+
+public:
+	BookService(){}
+
+	vector<Book>getAll() {
+		return bookRepository.getAll();
+	}
+};
 
 bool isRunning = true;
 
