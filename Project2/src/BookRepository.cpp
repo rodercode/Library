@@ -31,3 +31,17 @@ void BookRepository::execute(string query) {
         return;
     }
 }
+vector<Book> BookRepository::getAll(){
+    execute("SELECT * FROM books");
+    vector<Book> books;
+    while (res->next()) {
+        books.emplace_back(
+            res->getInt("book_id"),
+            res->getString("title"),
+            res->getString("author"),
+            res->getString("genre_name")
+        );
+    }
+
+    return books;
+}

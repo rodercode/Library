@@ -14,6 +14,18 @@ std::vector,
 std::istringstream,
 std::ios;
 
+class BookService {
+private:
+		BookRepository bookRepository;
+
+public:
+	BookService(){}
+
+	vector<Book>getAll() {
+		return bookRepository.getAll();
+	}
+};
+
 bool isRunning = true;
 
 // Main
