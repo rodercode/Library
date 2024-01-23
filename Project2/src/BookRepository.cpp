@@ -23,17 +23,44 @@ BookRepository::~BookRepository() {
     delete con;
 }
 
-void BookRepository::execute(string query) {
+void BookRepository::execute(string queary) {
+    try {
+        stmt->execute(queary);
+    }
+    catch (sql::SQLException& e) {
+        std::cout << "Error: " << e.what();
+        return;
+    }
+}
+
+void BookRepository::executeQuery(string query) {
     try {
         res = stmt->executeQuery(query);
     }
     catch (sql::SQLException& e) {
-        std::cout << "# ERR: " << e.what();
+        std::cout << "Error: " << e.what();
         return;
     }
 }
+
+// CRUD Operations
+void BookRepository::create(Book book) {
+    string insertBook =
+        "INSERT INTO books "
+        "(title, author, genre_name) VALUES"
+        "('" 
+        + book.getTitle() + "', '" 
+        + book.getAuthor() + "', '" 
+        + book.getGenreName() +
+        "')";
+
+    execute(insertBook);
+    cout << "Book created successfully" << endl;
+}
+
+
 vector<Book> BookRepository::getAll(){
-    execute("SELECT * FROM books");
+    executeQuery("SELECT * FROM books");
     vector<Book> books;
     while (res->next()) {
         books.emplace_back(

@@ -20,9 +20,4 @@ void displayMenu() {
 	cout << "2. Create Book\n";
 	cout << "3. Delete Book\n";
 	cout << "4. Exit\n\n";
-	cout << "Enter your choice (1-4): ";
-}
-
-void getUserInput(int& choice) {
-	cin >> choice;
 }

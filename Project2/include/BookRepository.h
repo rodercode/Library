@@ -27,6 +27,11 @@ public:
     BookRepository();
     ~BookRepository();
 
-    void execute(string query);
+    // Methods
+    void execute(string queary);
+    void executeQuery(string query);
+    
+    // CRUD Operations
+    void create(Book book);
     vector<Book> getAll();
 };

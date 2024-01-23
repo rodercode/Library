@@ -18,12 +18,33 @@ std::vector,
 std::istringstream,
 std::ios;
 
+
+template<typename T>
+void getUserInput(const string& prompt, T& input) {
+	cout << prompt;
+	
+	if(!(cin >> input)){
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+}
+
+
 class BookService {
 private:
 		BookRepository bookRepository;
 
 public:
 	BookService(){}
+
+	void create() {
+		string title, author, genreName;
+		getUserInput("Enter title: ", title);
+		getUserInput("Enter author: ", author);
+		getUserInput("Enter genre: ", genreName);
+
+		bookRepository.create(Book(0, title, author, genreName));
+	}
 
 	vector<Book>getAll() {
 		return bookRepository.getAll();
@@ -42,26 +63,31 @@ bool isRunning = true;
 int main() {
 	while (isRunning) {
 		displayMenu();
-		getUserInput(choice);
+		getUserInput("Enter your choice (1-4): ", choice);
 
 		switch (choice) {
 		case 1:
+		{
 			cout << endl;
 			displayBooks(bookService.getAll());
 			break;
-
+		}
 		case 2:
-			cout << "Create new book\n";
+		{
+			bookService.create();
 			break;
+		}
 
 		case 3:
 			cout << "Delete book\n";
 			break;
 
 		case 4:
+		{
 			cout << "Exiting program...\n";
 			isRunning = false;
 			break;
+		}
 
 		default:
 			cout << "Invalid input. Please try again." << '\n';
