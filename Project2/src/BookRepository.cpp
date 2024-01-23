@@ -24,7 +24,7 @@ BookRepository::~BookRepository() {
     delete prep_stmt;
 }
 
-void BookRepository::execute(string queary) {
+void BookRepository::executeCreate(string queary) {
     try {
         stmt->execute(queary);
     }
@@ -39,6 +39,11 @@ void BookRepository::executeSelect(string query) {
         res = stmt->executeQuery(query);
     }
     catch (sql::SQLException& e) {
+        std::cout << "Error: " << e.what();
+        return;
+    }
+}
+
 void BookRepository::executeDelete(string query, int id) {
     try {
 		prep_stmt = con->prepareStatement(query);
