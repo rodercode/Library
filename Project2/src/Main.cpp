@@ -37,6 +37,15 @@ private:
 public:
 	BookService(){}
 
+	void create() {
+		string title, author, genreName;
+		getUserInput("Enter title: ", title);
+		getUserInput("Enter author: ", author);
+		getUserInput("Enter genre: ", genreName);
+
+		bookRepository.create(Book(0, title, author, genreName));
+	}
+
 	vector<Book>getAll() {
 		return bookRepository.getAll();
 	}
@@ -65,6 +74,7 @@ int main() {
 		}
 		case 2:
 		{
+			bookService.create();
 			break;
 		}
 

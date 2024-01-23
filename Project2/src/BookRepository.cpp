@@ -42,6 +42,23 @@ void BookRepository::executeQuery(string query) {
         return;
     }
 }
+
+// CRUD Operations
+void BookRepository::create(Book book) {
+    string insertBook =
+        "INSERT INTO books "
+        "(title, author, genre_name) VALUES"
+        "('" 
+        + book.getTitle() + "', '" 
+        + book.getAuthor() + "', '" 
+        + book.getGenreName() +
+        "')";
+
+    execute(insertBook);
+    cout << "Book created successfully" << endl;
+}
+
+
 vector<Book> BookRepository::getAll(){
     executeQuery("SELECT * FROM books");
     vector<Book> books;
