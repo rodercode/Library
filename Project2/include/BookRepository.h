@@ -7,6 +7,7 @@
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
 #include <cppconn/statement.h>
+#include <cppconn/prepared_statement.h>
 #include <mysql_connection.h>
 #include <mysql_driver.h>
 
@@ -37,4 +38,5 @@ public:
     // CRUD Operations
     void create(Book book);
     vector<Book> getAll();
+    void deleteById(int bookId);
 };

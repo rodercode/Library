@@ -52,7 +52,7 @@ void BookRepository::executeDelete(string query, int id) {
 
     }catch(sql::SQLException& e) {
         std::cout << "Error: " << e.what();
-        return;
+		return;
     }
 }
 
@@ -85,4 +85,9 @@ vector<Book> BookRepository::getAll(){
     }
 
     return books;
+}
+
+void BookRepository::deleteById(int bookId) {
+    string deleteQuery = "DELETE FROM books WHERE book_id = ?";
+    executeDelete(deleteQuery, bookId);
 }
