@@ -15,4 +15,3 @@ using
 //Methods
 void displayBooks(vector<Book> books);
 void displayMenu();
-void getUserInput(int& choice);
