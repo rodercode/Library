@@ -17,6 +17,7 @@ BookRepository::BookRepository() {
 
 BookRepository::~BookRepository() {
     cout << "Destructor called" << endl;
+    
     // Deallocate memory for res, stmt and con
     delete res;
     delete stmt;
@@ -111,6 +112,26 @@ vector<Book> BookRepository::getAll(){
 }
 
 void BookRepository::deleteById(int bookId) {
-    string deleteQuery = "DELETE FROM books WHERE book_id = ?";
-    executeDelete(deleteQuery, bookId);
+    
+    try {
+        string getBookQuery = "SELECT * FROM books WHERE book_id = ?";
+        prep_stmt = con->prepareStatement(getBookQuery);
+        prep_stmt->setInt(1, bookId);
+        res = prep_stmt->executeQuery();
+
+        if (!res->next()) {
+            cout << "No book found with ID: " << bookId << endl;
+            return;
+        }
+        
+        string deleteQuery = "DELETE FROM books WHERE book_id = ?";
+        prep_stmt = con->prepareStatement(deleteQuery);
+        prep_stmt->setInt(1, bookId);
+        prep_stmt->execute();
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error: " << e.what();
+    }
+
+    cout << "Book with id: " << bookId << " was successfully deleted" << endl;
 }

@@ -8,7 +8,6 @@
 #include <sstream>
 #include <iomanip>
 
-
 using
 std::cout,
 std::cin,
