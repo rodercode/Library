@@ -34,7 +34,7 @@ void BookRepository::execute(string queary) {
     }
 }
 
-void BookRepository::executeQuery(string query) {
+void BookRepository::executeSelect(string query) {
     try {
         res = stmt->executeQuery(query);
     }
@@ -62,13 +62,13 @@ void BookRepository::create(Book book) {
         + book.getGenreName() +
         "')";
 
-    execute(insertBook);
+    executeCreate(insertBook);
     cout << "Book created successfully" << endl;
 }
 
 
 vector<Book> BookRepository::getAll(){
-    executeQuery("SELECT * FROM books");
+    executeSelect("SELECT * FROM books");
     vector<Book> books;
     while (res->next()) {
         books.emplace_back(

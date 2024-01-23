@@ -29,6 +29,9 @@ public:
     BookRepository();
     ~BookRepository();
 
+    // Query Execute operations
+    void executeCreate(string queary);
+    void executeSelect(string query);
     void executeDelete(string query, int id);
     
     // CRUD Operations
