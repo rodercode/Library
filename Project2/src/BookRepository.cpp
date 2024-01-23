@@ -23,17 +23,27 @@ BookRepository::~BookRepository() {
     delete con;
 }
 
-void BookRepository::execute(string query) {
+void BookRepository::execute(string queary) {
+    try {
+        stmt->execute(queary);
+    }
+    catch (sql::SQLException& e) {
+        std::cout << "Error: " << e.what();
+        return;
+    }
+}
+
+void BookRepository::executeQuery(string query) {
     try {
         res = stmt->executeQuery(query);
     }
     catch (sql::SQLException& e) {
-        std::cout << "# ERR: " << e.what();
+        std::cout << "Error: " << e.what();
         return;
     }
 }
 vector<Book> BookRepository::getAll(){
-    execute("SELECT * FROM books");
+    executeQuery("SELECT * FROM books");
     vector<Book> books;
     while (res->next()) {
         books.emplace_back(
