@@ -21,9 +21,10 @@ BookRepository::~BookRepository() {
     delete res;
     delete stmt;
     delete con;
+    delete prep_stmt;
 }
 
-void BookRepository::execute(string queary) {
+void BookRepository::executeCreate(string queary) {
     try {
         stmt->execute(queary);
     }
@@ -33,13 +34,25 @@ void BookRepository::execute(string queary) {
     }
 }
 
-void BookRepository::executeQuery(string query) {
+void BookRepository::executeSelect(string query) {
     try {
         res = stmt->executeQuery(query);
     }
     catch (sql::SQLException& e) {
         std::cout << "Error: " << e.what();
         return;
+    }
+}
+
+void BookRepository::executeDelete(string query, int id) {
+    try {
+		prep_stmt = con->prepareStatement(query);
+		prep_stmt->setInt(1, id);
+		prep_stmt->execute();
+
+    }catch(sql::SQLException& e) {
+        std::cout << "Error: " << e.what();
+		return;
     }
 }
 
@@ -54,13 +67,13 @@ void BookRepository::create(Book book) {
         + book.getGenreName() +
         "')";
 
-    execute(insertBook);
+    executeCreate(insertBook);
     cout << "Book created successfully" << endl;
 }
 
 
 vector<Book> BookRepository::getAll(){
-    executeQuery("SELECT * FROM books");
+    executeSelect("SELECT * FROM books");
     vector<Book> books;
     while (res->next()) {
         books.emplace_back(
@@ -72,4 +85,9 @@ vector<Book> BookRepository::getAll(){
     }
 
     return books;
+}
+
+void BookRepository::deleteById(int bookId) {
+    string deleteQuery = "DELETE FROM books WHERE book_id = ?";
+    executeDelete(deleteQuery, bookId);
 }

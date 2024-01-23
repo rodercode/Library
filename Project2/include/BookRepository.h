@@ -7,6 +7,7 @@
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
 #include <cppconn/statement.h>
+#include <cppconn/prepared_statement.h>
 #include <mysql_connection.h>
 #include <mysql_driver.h>
 
@@ -20,18 +21,22 @@ class BookRepository {
 private:
     sql::Driver *driver;
     sql::Connection *con;
+    sql::PreparedStatement *prep_stmt;
     sql::Statement *stmt;
     sql::ResultSet *res;
+   
 
 public:
     BookRepository();
     ~BookRepository();
 
-    // Methods
-    void execute(string queary);
-    void executeQuery(string query);
+    // Query Execute operations
+    void executeCreate(string queary);
+    void executeSelect(string query);
+    void executeDelete(string query, int id);
     
     // CRUD Operations
     void create(Book book);
     vector<Book> getAll();
+    void deleteById(int bookId);
 };

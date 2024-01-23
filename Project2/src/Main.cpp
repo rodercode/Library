@@ -49,6 +49,12 @@ public:
 	vector<Book>getAll() {
 		return bookRepository.getAll();
 	}
+
+	void deleteById() {
+		int bookId;
+		getUserInput("Enter book id: ", bookId);
+		bookRepository.deleteById(bookId);
+	}
 };
 
 
@@ -61,6 +67,7 @@ bool isRunning = true;
 
 // Main
 int main() {
+
 	while (isRunning) {
 		displayMenu();
 		getUserInput("Enter your choice (1-4): ", choice);
@@ -79,7 +86,9 @@ int main() {
 		}
 
 		case 3:
-			cout << "Delete book\n";
+			displayBooks(bookService.getAll());
+			cout << endl;
+			bookService.deleteById();
 			break;
 
 		case 4:
