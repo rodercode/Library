@@ -1,9 +1,9 @@
 -- Create or update the 'book' table --
 CREATE TABLE IF NOT EXISTS books (
   book_id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL UNIQUE,
   author VARCHAR(100) NOT NULL,
-  genre_name VARCHAR(50)
+  genre_name VARCHAR(50),
 );
 
 -- Insert data into the 'books' table
