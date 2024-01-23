@@ -71,6 +71,29 @@ void BookRepository::create(Book book) {
     cout << "Book created successfully" << endl;
 }
 
+Book BookRepository::getById(int id) {
+    try {
+        string query = "SELECT * FROM books WHERE book_id = ?";
+        prep_stmt = con->prepareStatement(query);
+        prep_stmt->setInt(1, id);
+        res = prep_stmt->executeQuery();
+
+        if (res->next()) {
+            return Book(
+                res->getInt("book_id"),
+                res->getString("title"),
+                res->getString("author"),
+                res->getString("genre_name")
+            );
+        }
+        else {
+            cout << "No book found with ID: " << id << endl;
+        }
+    }
+    catch (sql::SQLException& e) {
+		std::cout << "Error: " << e.what();
+    }
+}
 
 vector<Book> BookRepository::getAll(){
     executeSelect("SELECT * FROM books");

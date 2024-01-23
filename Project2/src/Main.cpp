@@ -46,6 +46,12 @@ public:
 		bookRepository.create(Book(0, title, author, genreName));
 	}
 
+	Book getById() {
+		int bookId;
+		getUserInput("Enter book id: ", bookId);
+		return bookRepository.getById(bookId);
+	}
+
 	vector<Book>getAll() {
 		return bookRepository.getAll();
 	}
@@ -56,9 +62,6 @@ public:
 		bookRepository.deleteById(bookId);
 	}
 };
-
-
-
 
 // Global variables
 int choice;

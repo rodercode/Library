@@ -37,6 +37,7 @@ public:
     
     // CRUD Operations
     void create(Book book);
+    Book getById(int id);
     vector<Book> getAll();
     void deleteById(int bookId);
 };
