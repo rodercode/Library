@@ -20,16 +20,16 @@ class BookRepository {
 private:
     sql::Driver *driver;
     sql::Connection *con;
+    sql::PreparedStatement *prep_stmt;
     sql::Statement *stmt;
     sql::ResultSet *res;
+   
 
 public:
     BookRepository();
     ~BookRepository();
 
-    // Methods
-    void execute(string queary);
-    void executeQuery(string query);
+    void executeDelete(string query, int id);
     
     // CRUD Operations
     void create(Book book);
