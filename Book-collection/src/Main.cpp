@@ -42,7 +42,9 @@ public:
 		getUserInput("Enter author: ", author);
 		getUserInput("Enter genre: ", genreName);
 
-		bookRepository.create(Book(0, title, author, genreName));
+
+		Book newBook(0, title, author, genreName);
+		bookRepository.create(newBook);
 	}
 
  		Book getById() {
