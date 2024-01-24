@@ -10,9 +10,6 @@ BookRepository::BookRepository() {
     
     // Connect to the MySQL library database
     con->setSchema("librarydb");
-    
-    // Create statement object to be able to execute SQL queries
-    stmt = con->createStatement();
 }
 
 BookRepository::~BookRepository() {
@@ -20,7 +17,6 @@ BookRepository::~BookRepository() {
     
     // Deallocate memory for res, stmt and con
     delete res;
-    delete stmt;
     delete con;
     delete prep_stmt;
 }

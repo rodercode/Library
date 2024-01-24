@@ -22,7 +22,6 @@ private:
     sql::Driver *driver;
     sql::Connection *con;
     sql::PreparedStatement *prep_stmt;
-    sql::Statement *stmt;
     sql::ResultSet *res;
    
 
