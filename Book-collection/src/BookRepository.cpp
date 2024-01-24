@@ -103,6 +103,12 @@ Book BookRepository::getById(int id) {
 vector<Book> BookRepository::getAll(){
     executeSelect("SELECT * FROM books");
     vector<Book> books;
+    
+    try {
+        string querySelectBooks = "SELECT * FROM books";
+        prep_stmt = con->prepareStatement(querySelectBooks);
+        res = prep_stmt->executeQuery();    
+        
     while (res->next()) {
         books.emplace_back(
             res->getInt("book_id"),
@@ -110,6 +116,10 @@ vector<Book> BookRepository::getAll(){
             res->getString("author"),
             res->getString("genre_name")
         );
+        }
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error: " << e.what();
     }
 
     return books;
