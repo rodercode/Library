@@ -104,6 +104,9 @@ int main() {
 
 		case 3:
 		{
+			displayBooks(bookService.getAll());
+			cout << endl;
+			bookService.updateById();
 			break;
 		}
 			
