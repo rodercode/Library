@@ -10,9 +10,6 @@ BookRepository::BookRepository() {
     
     // Connect to the MySQL library database
     con->setSchema("librarydb");
-    
-    // Create statement object to be able to execute SQL queries
-    stmt = con->createStatement();
 }
 
 BookRepository::~BookRepository() {
@@ -20,56 +17,27 @@ BookRepository::~BookRepository() {
     
     // Deallocate memory for res, stmt and con
     delete res;
-    delete stmt;
     delete con;
     delete prep_stmt;
 }
 
-void BookRepository::executeCreate(string queary) {
-    try {
-        stmt->execute(queary);
-    }
-    catch (sql::SQLException& e) {
-        std::cout << "Error: " << e.what();
-        return;
-    }
-}
-
-void BookRepository::executeSelect(string query) {
-    try {
-        res = stmt->executeQuery(query);
-    }
-    catch (sql::SQLException& e) {
-        std::cout << "Error: " << e.what();
-        return;
-    }
-}
-
-void BookRepository::executeDelete(string query, int id) {
-    try {
-		prep_stmt = con->prepareStatement(query);
-		prep_stmt->setInt(1, id);
-		prep_stmt->execute();
-
-    }catch(sql::SQLException& e) {
-        std::cout << "Error: " << e.what();
-		return;
-    }
-}
-
 // CRUD Operations
 void BookRepository::create(Book book) {
-    string insertBook =
-        "INSERT INTO books "
-        "(title, author, genre_name) VALUES"
-        "('" 
-        + book.getTitle() + "', '" 
-        + book.getAuthor() + "', '" 
-        + book.getGenreName() +
-        "')";
+    try {
+        string queryInsertBook = "INSERT INTO books (title, author, genre_name) VALUES (?, ?, ?)";
+        prep_stmt = con->prepareStatement(queryInsertBook);
 
-    executeCreate(insertBook);
-    cout << "Book created successfully" << endl;
+        prep_stmt->setString(1, book.getTitle());
+        prep_stmt->setString(2, book.getAuthor());
+        prep_stmt->setString(3, book.getGenreName());
+
+        prep_stmt->execute();
+    }
+    catch (sql::SQLException& e) {
+        std::cout << "Error: " << e.what();
+    }
+
+    cout << "Book with name: " << book.getTitle() << " was successfully created" << endl;
 }
 
 Book BookRepository::getById(int id) {
@@ -97,17 +65,26 @@ Book BookRepository::getById(int id) {
 }
 
 vector<Book> BookRepository::getAll(){
-    executeSelect("SELECT * FROM books");
     vector<Book> books;
-    while (res->next()) {
-        books.emplace_back(
-            res->getInt("book_id"),
-            res->getString("title"),
-            res->getString("author"),
-            res->getString("genre_name")
-        );
+    
+    try {
+        string querySelectBooks = "SELECT * FROM books";
+        prep_stmt = con->prepareStatement(querySelectBooks);
+        res = prep_stmt->executeQuery();    
+        
+        while (res->next()) {
+            books.emplace_back(
+                res->getInt("book_id"),
+                res->getString("title"),
+                res->getString("author"),
+                res->getString("genre_name")
+            );
+        }
     }
-
+    catch (sql::SQLException& e) {
+        cout << "Error: " << e.what();
+    }
+    
     return books;
 }
 

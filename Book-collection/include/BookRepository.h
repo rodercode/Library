@@ -22,18 +22,12 @@ private:
     sql::Driver *driver;
     sql::Connection *con;
     sql::PreparedStatement *prep_stmt;
-    sql::Statement *stmt;
     sql::ResultSet *res;
    
 
 public:
     BookRepository();
     ~BookRepository();
-
-    // Query Execute operations
-    void executeCreate(string queary);
-    void executeSelect(string query);
-    void executeDelete(string query, int id);
     
     // CRUD Operations
     void create(Book book);
