@@ -57,6 +57,19 @@ public:
 		return bookRepository.getAll();
 	}
 
+	void updateById() {
+		int bookId;
+		string title, author, genreName;
+		
+		getUserInput("Enter book id: ", bookId);
+		getUserInput("Enter title: ", title);
+		getUserInput("Enter author: ", author);
+		getUserInput("Enter genre: ", genreName);
+			
+		Book updatedBook(0, title, author, genreName);
+		bookRepository.updateById(bookId, updatedBook);
+	}
+
 	void deleteById() {
 		int bookId;
 		getUserInput("Enter book id: ", bookId);
