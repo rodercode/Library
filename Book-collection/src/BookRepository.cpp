@@ -111,6 +111,38 @@ vector<Book> BookRepository::getAll(){
     return books;
 }
 
+void BookRepository::updateById(int bookId, Book& book) {
+
+    try {
+        string getBookQuery = "SELECT * FROM books WHERE book_id = ?";
+        prep_stmt = con->prepareStatement(getBookQuery);
+        prep_stmt->setInt(1, bookId);
+        res = prep_stmt->executeQuery();
+
+        if (!res->next()) {
+            cout << "No book found with ID: " << bookId << endl;
+            return;
+        }
+
+        string updateBookQuery = 
+            "UPDATE books SET title = ?, author = ?, genre_name = ? WHERE book_id = ?";
+        
+        prep_stmt = con->prepareStatement(updateBookQuery);
+
+        prep_stmt->setString(1, book.getTitle());
+        prep_stmt->setString(2, book.getAuthor());
+        prep_stmt->setString(3, book.getGenreName());
+        prep_stmt->setInt(4, bookId);
+        
+        prep_stmt->execute();
+
+        cout << "Book with id: " << bookId << " was successfully updated" << endl;
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error: " << e.what();
+    }
+}
+
 void BookRepository::deleteById(int bookId) {
     
     try {
