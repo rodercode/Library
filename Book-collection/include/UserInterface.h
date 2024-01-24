@@ -1,8 +1,5 @@
 #pragma once
-
-// Include header files
 #include "Book.h"
-
 #include <iostream>
 #include <vector>
 

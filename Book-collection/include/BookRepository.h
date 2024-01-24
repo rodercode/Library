@@ -1,12 +1,10 @@
 #pragma once
 
 #include "Book.h"
-#include <iostream>
 #include <vector>
 #include <string>
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
-#include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
 #include <mysql_connection.h>
 #include <mysql_driver.h>

@@ -144,6 +144,7 @@
     <ClCompile Include="include\UserInterface.h" />
     <ClCompile Include="src\Book.cpp" />
     <ClCompile Include="src\BookRepository.cpp" />
+    <ClCompile Include="src\BookService.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\UserInterface.cpp" />
   </ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="database\user.csv" />
     <ClInclude Include="include\Book.h" />
     <ClInclude Include="include\BookRepository.h" />
+    <ClInclude Include="include\BookService.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sql\books.sql" />
