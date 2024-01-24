@@ -39,5 +39,6 @@ public:
     void create(Book book);
     Book getById(int id);
     vector<Book> getAll();
+    void updateById(int bookId, Book& book);
     void deleteById(int bookId);
 };

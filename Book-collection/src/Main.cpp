@@ -42,7 +42,9 @@ public:
 		getUserInput("Enter author: ", author);
 		getUserInput("Enter genre: ", genreName);
 
-		bookRepository.create(Book(0, title, author, genreName));
+
+		Book newBook(0, title, author, genreName);
+		bookRepository.create(newBook);
 	}
 
  		Book getById() {
@@ -53,6 +55,19 @@ public:
 
 	vector<Book>getAll() {
 		return bookRepository.getAll();
+	}
+
+	void updateById() {
+		int bookId;
+		string title, author, genreName;
+		
+		getUserInput("Enter book id: ", bookId);
+		getUserInput("Enter title: ", title);
+		getUserInput("Enter author: ", author);
+		getUserInput("Enter genre: ", genreName);
+			
+		Book updatedBook(0, title, author, genreName);
+		bookRepository.updateById(bookId, updatedBook);
 	}
 
 	void deleteById() {
@@ -88,12 +103,22 @@ int main() {
 		}
 
 		case 3:
+		{
+			displayBooks(bookService.getAll());
+			cout << endl;
+			bookService.updateById();
+			break;
+		}
+			
+		case 4:
+		{
 			displayBooks(bookService.getAll());
 			cout << endl;
 			bookService.deleteById();
 			break;
-
-		case 4:
+		}
+			
+		case 5:
 		{
 			cout << "Exiting program...\n";
 			isRunning = false;
