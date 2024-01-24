@@ -18,6 +18,7 @@ void displayMenu() {
 	cout << "Book Library Menu\n";
 	cout << "1. Get All Books\n";
 	cout << "2. Create Book\n";
-	cout << "3. Delete Book\n";
-	cout << "4. Exit\n\n";
+	cout << "3. Update Book\n";
+	cout << "4. Delete Book\n";
+	cout << "5. Exit\n\n";
 }

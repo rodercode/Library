@@ -88,12 +88,19 @@ int main() {
 		}
 
 		case 3:
+		{
+			break;
+		}
+			
+		case 4:
+		{
 			displayBooks(bookService.getAll());
 			cout << endl;
 			bookService.deleteById();
 			break;
+		}
 
-		case 4:
+		case 5:
 		{
 			cout << "Exiting program...\n";
 			isRunning = false;
