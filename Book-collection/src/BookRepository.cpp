@@ -25,38 +25,6 @@ BookRepository::~BookRepository() {
     delete prep_stmt;
 }
 
-void BookRepository::executeCreate(string queary) {
-    try {
-        stmt->execute(queary);
-    }
-    catch (sql::SQLException& e) {
-        std::cout << "Error: " << e.what();
-        return;
-    }
-}
-
-void BookRepository::executeSelect(string query) {
-    try {
-        res = stmt->executeQuery(query);
-    }
-    catch (sql::SQLException& e) {
-        std::cout << "Error: " << e.what();
-        return;
-    }
-}
-
-void BookRepository::executeDelete(string query, int id) {
-    try {
-		prep_stmt = con->prepareStatement(query);
-		prep_stmt->setInt(1, id);
-		prep_stmt->execute();
-
-    }catch(sql::SQLException& e) {
-        std::cout << "Error: " << e.what();
-		return;
-    }
-}
-
 // CRUD Operations
 void BookRepository::create(Book book) {
     try {
@@ -101,7 +69,6 @@ Book BookRepository::getById(int id) {
 }
 
 vector<Book> BookRepository::getAll(){
-    executeSelect("SELECT * FROM books");
     vector<Book> books;
     
     try {
@@ -109,19 +76,19 @@ vector<Book> BookRepository::getAll(){
         prep_stmt = con->prepareStatement(querySelectBooks);
         res = prep_stmt->executeQuery();    
         
-    while (res->next()) {
-        books.emplace_back(
-            res->getInt("book_id"),
-            res->getString("title"),
-            res->getString("author"),
-            res->getString("genre_name")
-        );
+        while (res->next()) {
+            books.emplace_back(
+                res->getInt("book_id"),
+                res->getString("title"),
+                res->getString("author"),
+                res->getString("genre_name")
+            );
         }
     }
     catch (sql::SQLException& e) {
         cout << "Error: " << e.what();
     }
-
+    
     return books;
 }
 
