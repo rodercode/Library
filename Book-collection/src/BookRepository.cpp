@@ -59,17 +59,21 @@ void BookRepository::executeDelete(string query, int id) {
 
 // CRUD Operations
 void BookRepository::create(Book book) {
-    string insertBook =
-        "INSERT INTO books "
-        "(title, author, genre_name) VALUES"
-        "('" 
-        + book.getTitle() + "', '" 
-        + book.getAuthor() + "', '" 
-        + book.getGenreName() +
-        "')";
+    try {
+        string queryInsertBook = "INSERT INTO books (title, author, genre_name) VALUES (?, ?, ?)";
+        prep_stmt = con->prepareStatement(queryInsertBook);
 
-    executeCreate(insertBook);
-    cout << "Book created successfully" << endl;
+        prep_stmt->setString(1, book.getTitle());
+        prep_stmt->setString(2, book.getAuthor());
+        prep_stmt->setString(3, book.getGenreName());
+
+        prep_stmt->execute();
+    }
+    catch (sql::SQLException& e) {
+        std::cout << "Error: " << e.what();
+    }
+
+    cout << "Book with name: " << book.getTitle() << " was successfully created" << endl;
 }
 
 Book BookRepository::getById(int id) {
