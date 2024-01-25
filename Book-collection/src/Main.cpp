@@ -18,8 +18,8 @@ bool isRunning = true;
 bool isLogged = false;
 int choice;
 
-int main() {
-	BookService bookService;
+
+
 void menuBookLoop() {
 	while (isLogged) {
 		displayBookMenu();
