@@ -14,7 +14,6 @@ Book::Book(int bookId, string title, string author, string genreName)
 }
 
 // Getters and Setters
-
 int Book::getBookId() {
     return this->bookId;
 }
