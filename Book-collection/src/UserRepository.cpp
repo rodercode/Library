@@ -19,3 +19,26 @@ UserRepository::~UserRepository() {
     delete con;
     delete prep_stmt;
 }
+
+vector<User> UserRepository::getAll() {
+    vector<User> users;
+
+    try {
+        string querySelectUsers = "SELECT * FROM users";
+        prep_stmt = con->prepareStatement(querySelectUsers);
+        res = prep_stmt->executeQuery();
+
+        while (res->next()) {
+            users.emplace_back(
+                res->getInt("user_id"),
+                res->getString("username"),
+                res->getString("password")
+            );
+        }
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error: " << e.what();
+    }
+
+    return users;
+}

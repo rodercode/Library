@@ -20,9 +20,9 @@ private:
     sql::PreparedStatement* prep_stmt;
     sql::ResultSet* res;
 
-
 public:
     UserRepository();
     ~UserRepository();
 
+    vector<User> getAll();
 };
