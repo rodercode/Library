@@ -67,17 +67,21 @@ void menuBookLoop() {
 }
 
 void login() {
-	string username, password;
-	getUserInput("Enter username: ", username);
-	getUserInput("Enter password: ", password);
+	Credentials credentials;
+	getUserInput("Enter username: ", credentials.username);
+	getUserInput("Enter password: ", credentials.password);
 
-	if (username != "admin" && password != "SimplePass") {
-		cout << "Invalid username or password. Please try again." << '\n';
+	UserRepository userRepository;
+	for (User user : userRepository.getAll()) {
+		if (user.getUsername() == credentials.username && user.getPassword() == credentials.password) {
+			cout << "Logged in successfully!\n";
+			isLogged = true;
+			menuBookLoop();
 		return;
+		}
 	}
 	
-	isLogged = true;
-	menuBookLoop();
+	cout << "Invalid credentials. Please try again.\n";
 }
 
 
