@@ -13,7 +13,7 @@ void getUserInput(const string& prompt, T& input) {
 }
 
 // Global variables
-int choice;
+BookService bookService;
 bool isRunning = true;
 bool isLogged = false;
 int choice;
@@ -96,5 +96,8 @@ void menuLoginLoop() {
 
 	cout << endl;
 }
+
+int main() {
+	menuLoginLoop();
 	return 0;
 }
