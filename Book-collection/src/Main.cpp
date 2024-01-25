@@ -1,6 +1,7 @@
 // Include header files
 #include "../include/UserInterface.h"
 #include "../include/BookService.h"
+#include "../include/User.h"
 
 // Global variables
 int choice;
