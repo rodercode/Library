@@ -1,6 +1,12 @@
 #include "../include/User.h"
 
-User::User(string username, string password) {
+// Default Constructor
+User::User()
+    :userId(0), username(""), password("") {}
+
+// Parameterized Constructor
+User::User(int userId, string username, string password){
+    this->userId = userId;
     this->username = username;
     this->password = password;
 }
