@@ -11,7 +11,16 @@ void getUserInput(const string& prompt, T& input) {
 }
 
 // Constructor
-BookService::BookService() {}
+BookService::BookService() {
+	cout << "Allocation in BookService" << endl;
+	bookRepository = new BookRepository();
+}
+
+// Destructor
+BookService::~BookService() {
+	cout << "Deallocation in BookService" << endl;
+	delete bookRepository;
+}
 
 // CRUD operations
 void BookService::create() {
@@ -22,17 +31,17 @@ void BookService::create() {
 
 
 	Book newBook(0, title, author, genreName);
-	bookRepository.create(newBook);
+	bookRepository->create(newBook);
 }
 
 Book BookService::getById() {
 	int bookId;
 	getUserInput("Enter book id: ", bookId);
-	return bookRepository.getById(bookId);
+	return bookRepository->getById(bookId);
 }
 
 vector<Book> BookService::getAll() {
-	return bookRepository.getAll();
+	return bookRepository->getAll();
 }
 
 void BookService::updateById() {
@@ -45,12 +54,12 @@ void BookService::updateById() {
 	getUserInput("Enter genre: ", genreName);
 
 	Book updatedBook(0, title, author, genreName);
-	bookRepository.updateById(bookId, updatedBook);
+	bookRepository->updateById(bookId, updatedBook);
 }
 
 void BookService::deleteById() {
 	int bookId;
 	getUserInput("Enter book id: ", bookId);
-	bookRepository.deleteById(bookId);
+	bookRepository->deleteById(bookId);
 }
 
