@@ -15,53 +15,50 @@ void getUserInput(const string& prompt, T& input) {
 // Global variables
 int choice;
 bool isRunning = true;
+bool isLogged = false;
+int choice;
 
 int main() {
 	BookService bookService;
-
-	while (isRunning) {
-		displayMenu();
-		getUserInput("Enter your choice (1-4): ", choice);
+void menuBookLoop() {
+	while (isLogged) {
+		displayBookMenu();
+		getUserInput("Enter your choice (1-5): ", choice);
 
 		switch (choice) {
-		case 1:
-		{
+		case 1: {
 			cout << endl;
 			displayBooks(bookService.getAll());
 			break;
 		}
-		case 2:
-		{
+		case 2: {
 			bookService.create();
 			break;
 		}
 
-		case 3:
-		{
+		case 3: {
 			displayBooks(bookService.getAll());
 			cout << endl;
 			bookService.updateById();
 			break;
 		}
 			
-		case 4:
-		{
+		case 4: {
 			displayBooks(bookService.getAll());
 			cout << endl;
 			bookService.deleteById();
 			break;
 		}
 			
-		case 5:
-		{
+		case 5: {
 			cout << "Exiting program...\n";
-			isRunning = false;
+			isLogged = false;
 			break;
 		}
 
-		default:
+		default: {
 			cout << "Invalid input. Please try again." << '\n';
-			
+		}
 		}
 
 		cout << endl;
