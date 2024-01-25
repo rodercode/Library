@@ -10,7 +10,11 @@ private:
     string password;
 
 public:
-    User(string username, string password);
+    // Default constructor
+    User();
+
+    // Constructor with parameters
+    User(int userId, string username, string password);
 
     int getUserId();
 

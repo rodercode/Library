@@ -13,15 +13,16 @@ std::string,
 std::cout,
 std::endl;
 
-class BookRepository {
+class UserRepository {
 private:
     sql::Driver* driver;
     sql::Connection* con;
     sql::PreparedStatement* prep_stmt;
     sql::ResultSet* res;
 
-
 public:
-    BookRepository();
-    ~BookRepository();
+    UserRepository();
+    ~UserRepository();
+
+    vector<User> getAll();
 };
