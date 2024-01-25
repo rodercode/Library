@@ -11,4 +11,5 @@ using
 
 //Methods
 void displayBooks(vector<Book> books);
-void displayMenu();
+void displayBookMenu();
+void displayLoginMenu();

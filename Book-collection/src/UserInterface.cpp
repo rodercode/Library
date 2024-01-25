@@ -14,12 +14,15 @@ void displayBooks(vector<Book> books) {
 
 }
 
-void displayMenu() {
+void displayBookMenu() {
 	cout << "Book Library Menu\n";
 	cout << "1. Get All Books\n";
 	cout << "2. Create Book\n";
 	cout << "3. Update Book\n";
 	cout << "4. Delete Book\n";
+	cout << "5. Logout\n\n";
+}
+
 void displayLoginMenu() {
 	cout << "1. Login to the system\n";
 	cout << "2. Registrate new account\n";
