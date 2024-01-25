@@ -20,5 +20,8 @@ void displayMenu() {
 	cout << "2. Create Book\n";
 	cout << "3. Update Book\n";
 	cout << "4. Delete Book\n";
-	cout << "5. Exit\n\n";
+void displayLoginMenu() {
+	cout << "1. Login to the system\n";
+	cout << "2. Registrate new account\n";
+	cout << "3. Exit \n";
 }
