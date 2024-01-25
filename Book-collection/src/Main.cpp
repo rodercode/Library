@@ -7,7 +7,6 @@
 int choice;
 bool isLogged = false;
 bool isRunning = true;
-BookService bookService;
 
 template<typename T>
 void getUserInput(const string& prompt, T& input) {
@@ -19,22 +18,10 @@ void getUserInput(const string& prompt, T& input) {
 	}
 }
 
-void login() {
-	string username, password;
-	getUserInput("Enter username: ", username);
-	getUserInput("Enter password: ", password);
-
-	if (username != "admin" && password != "SimplePass") {
-		cout << "Invalid username or password. Please try again." << '\n';
-		return;
-	}
-
-	isLogged = true;
-}
-
-
-
 void menuBookLoop() {
+	BookService bookService;
+	cout << isLogged << endl;
+
 	while (isLogged) {
 		displayBookMenu();
 		getUserInput("Enter your choice (1-5): ", choice);
@@ -56,14 +43,14 @@ void menuBookLoop() {
 			bookService.updateById();
 			break;
 		}
-			
+
 		case 4: {
 			displayBooks(bookService.getAll());
 			cout << endl;
 			bookService.deleteById();
 			break;
 		}
-			
+
 		case 5: {
 			cout << "Exiting program...\n";
 			isLogged = false;
@@ -79,6 +66,21 @@ void menuBookLoop() {
 	}
 }
 
+void login() {
+	string username, password;
+	getUserInput("Enter username: ", username);
+	getUserInput("Enter password: ", password);
+
+	if (username != "admin" && password != "SimplePass") {
+		cout << "Invalid username or password. Please try again." << '\n';
+		return;
+	}
+	
+	isLogged = true;
+	menuBookLoop();
+}
+
+
 // Methods
 void menuLoginLoop() {
 	while (isRunning) {
@@ -88,9 +90,7 @@ void menuLoginLoop() {
 		switch (choice) {
 		case 1: {
 			cout << endl;
-
 			login();
-			menuBookLoop();
 			break;
 		}
 		case 2: {
