@@ -72,6 +72,7 @@ void menuBookLoop() {
 	}
 }
 
+
 void login() {
 	Credentials credentials;
 	getUserInput("Enter username: ", credentials.username);
@@ -90,6 +91,17 @@ void login() {
 	cout << "Invalid credentials. Please try again.\n";
 }
 
+void registrate() {
+	string username, password;
+	getUserInput("Enter username: ",username);
+	getUserInput("Enter password: ", password);
+
+	User newUser(0, username, password);
+	
+	UserRepository userRepository;
+	userRepository.create(newUser);
+}
+
 
 // Methods
 void menuLoginLoop() {
@@ -105,6 +117,7 @@ void menuLoginLoop() {
 		}
 		case 2: {
 			cout << endl;
+			registrate();
 			cout << "Registering...\n";
 			break;
 		}
