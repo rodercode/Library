@@ -31,6 +31,7 @@ void BookRepository::create(Book book) {
     }
     catch (sql::SQLException& e) {
         std::cout << "Error: " << e.what();
+        return;
     }
 
     cout << "Book with name: " << book.getTitle() << " was successfully created" << endl;
@@ -136,6 +137,7 @@ void BookRepository::deleteById(int bookId) {
     }
     catch (sql::SQLException& e) {
         cout << "Error: " << e.what();
+        return;
     }
 
     cout << "Book with id: " << bookId << " was successfully deleted" << endl;
