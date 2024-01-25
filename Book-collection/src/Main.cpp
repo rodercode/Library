@@ -2,6 +2,12 @@
 #include "../include/UserInterface.h"
 #include "../include/BookService.h"
 
+// Global variables
+int choice;
+bool isLogged = false;
+bool isRunning = true;
+BookService bookService;
+
 template<typename T>
 void getUserInput(const string& prompt, T& input) {
 	cout << prompt;
@@ -12,11 +18,18 @@ void getUserInput(const string& prompt, T& input) {
 	}
 }
 
-// Global variables
-BookService bookService;
-bool isRunning = true;
-bool isLogged = false;
-int choice;
+void login() {
+	string username, password;
+	getUserInput("Enter username: ", username);
+	getUserInput("Enter password: ", password);
+
+	if (username != "admin" && password != "SimplePass") {
+		cout << "Invalid username or password. Please try again." << '\n';
+		return;
+	}
+
+	isLogged = true;
+}
 
 
 
@@ -74,8 +87,7 @@ void menuLoginLoop() {
 		switch (choice) {
 		case 1: {
 			cout << endl;
-			cout << "Logging in...\n";
-			isLogged = true;
+			login();
 			menuBookLoop();
 			break;
 		}
