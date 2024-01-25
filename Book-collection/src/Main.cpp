@@ -2,11 +2,17 @@
 #include "../include/UserInterface.h"
 #include "../include/BookService.h"
 #include "../include/User.h"
+#include "../include/UserRepository.h"
 
 // Global variables
 int choice;
 bool isLogged = false;
 bool isRunning = true;
+
+struct Credentials {
+	string username;
+	string password;
+};
 
 template<typename T>
 void getUserInput(const string& prompt, T& input) {
@@ -77,10 +83,10 @@ void login() {
 			cout << "Logged in successfully!\n";
 			isLogged = true;
 			menuBookLoop();
-		return;
+			return;
 		}
 	}
-	
+
 	cout << "Invalid credentials. Please try again.\n";
 }
 
