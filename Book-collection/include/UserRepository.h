@@ -24,5 +24,6 @@ public:
     UserRepository();
     ~UserRepository();
 
+    void create(User user);
     vector<User> getAll();
 };

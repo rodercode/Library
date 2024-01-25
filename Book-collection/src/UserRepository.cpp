@@ -20,6 +20,25 @@ UserRepository::~UserRepository() {
     delete prep_stmt;
 }
 
+// CRUD Operations
+void UserRepository::create(User user) {
+    try {
+        string queryInsertBook = "INSERT INTO users (username, password) VALUES (?, ?)";
+        prep_stmt = con->prepareStatement(queryInsertBook);
+
+        prep_stmt->setString(1, user.getUsername());
+        prep_stmt->setString(2, user.getPassword());
+
+        prep_stmt->execute();
+    }
+    catch (sql::SQLException& e) {
+        cout << "Error: " << e.what();
+        return;
+    }
+
+    cout << "User with name: " << user.getUsername() << " was successfully created" << endl;
+}
+
 vector<User> UserRepository::getAll() {
     vector<User> users;
 
