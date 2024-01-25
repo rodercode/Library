@@ -63,6 +63,38 @@ void menuBookLoop() {
 
 		cout << endl;
 	}
+}
 
+// Methods
+void menuLoginLoop() {
+	while (isRunning) {
+		displayLoginMenu();
+		getUserInput("Enter your choice (1-3): ", choice);
+
+		switch (choice) {
+		case 1: {
+			cout << endl;
+			cout << "Logging in...\n";
+			isLogged = true;
+			menuBookLoop();
+			break;
+		}
+		case 2: {
+			cout << endl;
+			cout << "Registering...\n";
+			break;
+		}
+
+		case 3: {
+			cout << endl;
+			cout << "Exiting program...\n";
+			isRunning = false;
+			break;
+		}
+		}
+	}
+
+	cout << endl;
+}
 	return 0;
 }
