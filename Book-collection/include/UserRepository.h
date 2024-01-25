@@ -13,7 +13,7 @@ std::string,
 std::cout,
 std::endl;
 
-class BookRepository {
+class UserRepository {
 private:
     sql::Driver* driver;
     sql::Connection* con;
@@ -22,6 +22,7 @@ private:
 
 
 public:
-    BookRepository();
-    ~BookRepository();
+    UserRepository();
+    ~UserRepository();
+
 };

@@ -1,6 +1,6 @@
 #include "../include/UserRepository.h"
 
-BookRepository::BookRepository() {
+UserRepository::UserRepository() {
     cout << "Constructor called" << endl;
 
     // Create a connection
@@ -11,7 +11,7 @@ BookRepository::BookRepository() {
     con->setSchema("librarydb");
 }
 
-BookRepository::~BookRepository() {
+UserRepository::~UserRepository() {
     cout << "Destructor called" << endl;
 
     // Deallocate memory for res, stmt and con
