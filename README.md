@@ -31,5 +31,5 @@ Clone this repository to your local machine:
     - Select "Add" and then choose "Existing Item..."
     - Navigate to the location of the missing files in the cloned repository and add them to the project.
 
-4. Run a build the project
+4. Run and build the project 
    
