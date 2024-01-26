@@ -11,7 +11,7 @@ account and log in to the system. This README provides instructions on how to se
 
 ## Getting Started
 
-Follow these steps to set up and run the XandicLifehub application:
+Follow these steps to set up and run the Application:
 
 1. Clone the Repository
 Open your command-line interface and run the following command to clone the Book Collection repository from GitHub:
@@ -30,4 +30,6 @@ Clone this repository to your local machine:
     - Right-click on the solution (or project) in the solution explorer.
     - Select "Add" and then choose "Existing Item..."
     - Navigate to the location of the missing files in the cloned repository and add them to the project.
+
+4. Run a build the project
    
