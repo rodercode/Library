@@ -2,8 +2,6 @@
 #include "../include/Book.h"
 
 BookRepository::BookRepository() {
-    cout << "Constructor called" << endl;
-    
     // Create a connection
     driver = get_driver_instance();
     con = driver->connect("tcp://127.0.0.1:3306", "test", "P@ssw0rd!");
@@ -13,8 +11,6 @@ BookRepository::BookRepository() {
 }
 
 BookRepository::~BookRepository() {
-    cout << "Destructor called" << endl;
-    
     // Deallocate memory for res, stmt and con
     delete res;
     delete con;
@@ -24,17 +20,19 @@ BookRepository::~BookRepository() {
 // CRUD Operations
 void BookRepository::create(Book book) {
     try {
-        string queryInsertBook = "INSERT INTO books (title, author, genre_name) VALUES (?, ?, ?)";
+        string queryInsertBook = "INSERT INTO books (title, author, genre_name, user_id) VALUES (?, ?, ?, ?)";
         prep_stmt = con->prepareStatement(queryInsertBook);
 
         prep_stmt->setString(1, book.getTitle());
         prep_stmt->setString(2, book.getAuthor());
         prep_stmt->setString(3, book.getGenreName());
+        prep_stmt->setInt(4, book.getUserId());
 
         prep_stmt->execute();
     }
     catch (sql::SQLException& e) {
         std::cout << "Error: " << e.what();
+        return;
     }
 
     cout << "Book with name: " << book.getTitle() << " was successfully created" << endl;
@@ -52,7 +50,8 @@ Book BookRepository::getById(int id) {
                 res->getInt("book_id"),
                 res->getString("title"),
                 res->getString("author"),
-                res->getString("genre_name")
+                res->getString("genre_name"),
+                res->getInt("user_id")
             );
         }
         else {
@@ -64,12 +63,14 @@ Book BookRepository::getById(int id) {
     }
 }
 
-vector<Book> BookRepository::getAll(){
+vector<Book> BookRepository::getAll(int userId){
     vector<Book> books;
+    cout << "User id: " << userId << endl;
     
     try {
-        string querySelectBooks = "SELECT * FROM books";
+        string querySelectBooks = "SELECT * FROM books WHERE user_id = ?";
         prep_stmt = con->prepareStatement(querySelectBooks);
+        prep_stmt->setInt(1, userId);
         res = prep_stmt->executeQuery();    
         
         while (res->next()) {
@@ -77,7 +78,8 @@ vector<Book> BookRepository::getAll(){
                 res->getInt("book_id"),
                 res->getString("title"),
                 res->getString("author"),
-                res->getString("genre_name")
+                res->getString("genre_name"),
+                res->getInt("user_id")
             );
         }
     }
@@ -88,16 +90,16 @@ vector<Book> BookRepository::getAll(){
     return books;
 }
 
-void BookRepository::updateById(int bookId, Book& book) {
-
+void BookRepository::updateById(Book& book) {
+    
     try {
         string getBookQuery = "SELECT * FROM books WHERE book_id = ?";
         prep_stmt = con->prepareStatement(getBookQuery);
-        prep_stmt->setInt(1, bookId);
+        prep_stmt->setInt(1, book.getBookId());
         res = prep_stmt->executeQuery();
 
         if (!res->next()) {
-            cout << "No book found with ID: " << bookId << endl;
+            cout << "No book found with ID: " << book.getBookId() << endl;
             return;
         }
 
@@ -109,18 +111,18 @@ void BookRepository::updateById(int bookId, Book& book) {
         prep_stmt->setString(1, book.getTitle());
         prep_stmt->setString(2, book.getAuthor());
         prep_stmt->setString(3, book.getGenreName());
-        prep_stmt->setInt(4, bookId);
+        prep_stmt->setInt(4, book.getBookId()); 
         
         prep_stmt->execute();
 
-        cout << "Book with id: " << bookId << " was successfully updated" << endl;
+        cout << "Book with id: " << book.getBookId() << " was successfully updated" << endl;
     }
     catch (sql::SQLException& e) {
         cout << "Error: " << e.what();
     }
 }
 
-void BookRepository::deleteById(int bookId) {
+void BookRepository::deleteById(int bookId, int userId) {
     
     try {
         string getBookQuery = "SELECT * FROM books WHERE book_id = ?";
@@ -132,6 +134,11 @@ void BookRepository::deleteById(int bookId) {
             cout << "No book found with ID: " << bookId << endl;
             return;
         }
+
+        if (res->getInt("user_id") != userId) {
+			cout << "You can only delete books that you have created" << endl;
+			return;
+		}
         
         string deleteQuery = "DELETE FROM books WHERE book_id = ?";
         prep_stmt = con->prepareStatement(deleteQuery);
@@ -140,6 +147,7 @@ void BookRepository::deleteById(int bookId) {
     }
     catch (sql::SQLException& e) {
         cout << "Error: " << e.what();
+        return;
     }
 
     cout << "Book with id: " << bookId << " was successfully deleted" << endl;

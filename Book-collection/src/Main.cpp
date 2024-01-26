@@ -1,70 +1,26 @@
 // Include header files
 #include "../include/UserInterface.h"
 #include "../include/BookService.h"
+#include "../include/AuthService.h"
+#include "../include/MenuController.h"
 
-template<typename T>
-void getUserInput(const string& prompt, T& input) {
-	cout << prompt;
-
-	if (!(cin >> input)) {
-		cin.clear();
-		cin.ignore(100, '\n');
-	}
-}
-
-// Global variables
-int choice;
+// Variables
+User currentUser;
 bool isRunning = true;
+bool isLogged = false;
+int choice;
 
 int main() {
+	// Variables
+	AuthService authService;
 	BookService bookService;
 
 	while (isRunning) {
-		displayMenu();
-		getUserInput("Enter your choice (1-4): ", choice);
+		menuLoginLoop(authService);
 
-		switch (choice) {
-		case 1:
-		{
-			cout << endl;
-			displayBooks(bookService.getAll());
-			break;
+		while (isLogged) {
+			menuBookLoop(bookService);
 		}
-		case 2:
-		{
-			bookService.create();
-			break;
-		}
-
-		case 3:
-		{
-			displayBooks(bookService.getAll());
-			cout << endl;
-			bookService.updateById();
-			break;
-		}
-			
-		case 4:
-		{
-			displayBooks(bookService.getAll());
-			cout << endl;
-			bookService.deleteById();
-			break;
-		}
-			
-		case 5:
-		{
-			cout << "Exiting program...\n";
-			isRunning = false;
-			break;
-		}
-
-		default:
-			cout << "Invalid input. Please try again." << '\n';
-			
-		}
-
-		cout << endl;
 	}
 
 	return 0;

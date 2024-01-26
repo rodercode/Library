@@ -2,6 +2,7 @@
 #include "BookRepository.h"
 #include <iostream>
 #include <vector>
+#include "User.h"
 
 using 
 	std::vector,
@@ -11,11 +12,14 @@ class BookService {
 
 private:
 	// Fields
-	BookRepository bookRepository;
+	BookRepository* bookRepository;
 
 public:
 	// Constructor
 	BookService();
+
+	// Destructor
+	~BookService();
 
 	// CRUD Operations
 	void create();

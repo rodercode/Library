@@ -1,5 +1,7 @@
 #include "../include/BookService.h"
 
+extern User currentUser;
+
 template<typename T>
 void getUserInput(const string& prompt, T& input) {
 	cout << prompt;
@@ -11,7 +13,16 @@ void getUserInput(const string& prompt, T& input) {
 }
 
 // Constructor
-BookService::BookService() {}
+BookService::BookService() {
+	cout << "Allocation in BookService" << endl;
+	bookRepository = new BookRepository();
+}
+
+// Destructor
+BookService::~BookService() {
+	cout << "Deallocation in BookService" << endl;
+	delete bookRepository;
+}
 
 // CRUD operations
 void BookService::create() {
@@ -21,22 +32,22 @@ void BookService::create() {
 	getUserInput("Enter genre: ", genreName);
 
 
-	Book newBook(0, title, author, genreName);
-	bookRepository.create(newBook);
+	Book newBook(0, title, author, genreName, currentUser.getUserId());
+	bookRepository->create(newBook);
 }
 
 Book BookService::getById() {
 	int bookId;
 	getUserInput("Enter book id: ", bookId);
-	return bookRepository.getById(bookId);
+	return bookRepository->getById(bookId);
 }
 
 vector<Book> BookService::getAll() {
-	return bookRepository.getAll();
+	return bookRepository->getAll(currentUser.getUserId());
 }
 
 void BookService::updateById() {
-	int bookId;
+	int bookId;		
 	string title, author, genreName;
 
 	getUserInput("Enter book id: ", bookId);
@@ -44,13 +55,14 @@ void BookService::updateById() {
 	getUserInput("Enter author: ", author);
 	getUserInput("Enter genre: ", genreName);
 
-	Book updatedBook(0, title, author, genreName);
-	bookRepository.updateById(bookId, updatedBook);
+
+	Book updatedBook(bookId, title, author, genreName, currentUser.getUserId());
+	bookRepository->updateById(updatedBook);
 }
 
 void BookService::deleteById() {
 	int bookId;
 	getUserInput("Enter book id: ", bookId);
-	bookRepository.deleteById(bookId);
+	bookRepository->deleteById(bookId, currentUser.getUserId());
 }
 
