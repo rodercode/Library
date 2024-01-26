@@ -32,8 +32,10 @@ Clone this repository to your local machine:
     - Navigate to the location of the missing files in the cloned repository and add them to the project.
 
 4. Database Setup:
-   Make sure your MySQL Server is properly configured and running. The application assumes you have a working MySQL database set up for user account storage and book collection management.
-   all the SQL queries required to build libraryDB and it's content are inside the SQL folder. 
+   Please ensure that your MySQL Server is correctly configured and running. The application expects you to have a functional
+   MySQL database in place, which is used for storing user account information and managing your book collection. All the SQL
+   queries needed to create the "libraryDB" and populate it with the necessary data can be found in the "SQL" folder for your
+   convenience.
 
-5. Run and build the project 
+6. Run and build the project 
    
