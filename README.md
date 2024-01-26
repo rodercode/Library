@@ -26,4 +26,4 @@ Follow these steps to set up and run the XandicLifehub application:
 1. Clone this repository to your local machine:
 
    ```bash
-   https://github.com/rodercode/Library.git
+   https://github.com/rodercode/book-collection.git
