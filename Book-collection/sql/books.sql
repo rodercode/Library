@@ -8,10 +8,12 @@ CREATE TABLE IF NOT EXISTS books (
 );
 
 -- Insert data into the 'books' table
-INSERT INTO books (title, author, genre_name) VALUES
-('The Catcher in the Rye', 'J.D. Salinger', 'Fiction'),
-('To Kill a Mockingbird', 'Harper Lee', 'Classics'),
-('1984', 'George Orwell', 'Science Fiction');
+INSERT INTO books (title, author, genre_name, user_id) VALUES
+('The Catcher in the Rye', 'J.D. Salinger', 'Fiction', 1),
+('To Kill a Mockingbird', 'Harper Lee', 'Classics', 1),
+('1984', 'George Orwell', 'Science Fiction', 2);
+
+
 
 -- Drop the 'books' table if it exists
 DROP TABLE IF EXISTS books;

@@ -14,13 +14,11 @@ void getUserInput(const string& prompt, T& input) {
 
 // Constructor
 BookService::BookService() {
-	cout << "Allocation in BookService" << endl;
 	bookRepository = new BookRepository();
 }
 
 // Destructor
 BookService::~BookService() {
-	cout << "Deallocation in BookService" << endl;
 	delete bookRepository;
 }
 
