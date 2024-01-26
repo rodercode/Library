@@ -30,14 +30,14 @@ Clone this repository to your local machine:
    https://github.com/rodercode/book-collection.git
 
 2. Setup MySQL Connector/C++
-   *download MySQL connector: https://dev.mysql.com/downloads/connector/cpp/
-   *Watch this tutorial how to setup MySQL connector for visual studio
-   https://www.youtube.com/watch?v=a_W4zt5sR1M&t=109s
+   * download MySQL connector: https://dev.mysql.com/downloads/connector/cpp/
+   * Watch this tutorial how to setup MySQL connector for visual studio
+     https://www.youtube.com/watch?v=a_W4zt5sR1M&t=109s
 3. Add Existing Files to the Project
-    *Open your C++ development environment (e.g., Visual Studio, Code::Blocks).
-    *If you see that some files are marked with a red sign (indicating they are missing), follow these steps:
+    * Open your C++ development environment (e.g., Visual Studio, Code::Blocks).
+    * If you see that some files are marked with a red sign (indicating they are missing), follow these steps:
 
-      *Right-click on the solution (or project) in the solution explorer.
-      *Select "Add" and then choose "Existing Item..."
-      *Navigate to the location of the missing files in the cloned repository and add them to the project.
+      * Right-click on the solution (or project) in the solution explorer.
+      * Select "Add" and then choose "Existing Item..."
+      * Navigate to the location of the missing files in the cloned repository and add them to the project.
    
