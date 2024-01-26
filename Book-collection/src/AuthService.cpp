@@ -2,6 +2,7 @@
 #include "../include/AuthService.h"
 
 extern bool isLogged;
+extern User currentUser;
 
 template<typename T>
 void getUserInput(const string& prompt, T& input) {
@@ -31,6 +32,7 @@ void AuthService::login() {
 
     for (User user : userRepository->getAll()) {
         if (credentials.username == user.getUsername() && credentials.password == user.getPassword()){
+            setCurrentUser(user);
             std::cout << "Login successful!\n";
             isLogged = true;
             return;
@@ -39,6 +41,8 @@ void AuthService::login() {
         
     std::cout << "Invalid credentials. Please try again.\n";
 }
+
+
 
 void AuthService::registrate() {
     getUserInput("Enter username: ", credentials.username);
@@ -53,5 +57,20 @@ void AuthService::registrate() {
 
     User newUser(0, credentials.username, credentials.password);
     userRepository->create(newUser);
+}
+
+void AuthService::checkIfLogged() {
+    if (!isLogged && currentUser.getUserId() == 0){
+        currentUser.setUserId(0);
+        currentUser.setUsername("");
+        currentUser.setPassword("");	
+	}
+}
+
+
+void AuthService::setCurrentUser(User& user) {
+    currentUser.setUserId(user.getUserId());
+    currentUser.setUsername(user.getUsername());
+    currentUser.setPassword(user.getPassword());
 }
 

@@ -1,10 +1,10 @@
--- Create or update the 'book' table --
+
 CREATE TABLE IF NOT EXISTS books (
   book_id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL unique,
   author VARCHAR(100) NOT NULL,
   genre_name VARCHAR(50),
-   user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id)
+   user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 -- Insert data into the 'books' table

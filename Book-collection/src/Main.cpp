@@ -5,6 +5,7 @@
 #include "../include/MenuController.h"
 
 // Variables
+User currentUser;
 bool isRunning = true;
 bool isLogged = false;
 int choice;

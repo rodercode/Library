@@ -23,4 +23,6 @@ public:
 
 	void login();
 	void registrate();
+    void checkIfLogged();
+    void setCurrentUser(User& user);
 };
