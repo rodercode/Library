@@ -30,7 +30,7 @@ public:
     // CRUD Operations
     void create(Book book);
     Book getById(int id);
-    vector<Book> getAll();
-    void updateById(int bookId, Book& book);
-    void deleteById(int bookId);
+    vector<Book> getAll(int userId);
+    void updateById(Book& book);
+    void deleteById(int bookId, int userId);
 };

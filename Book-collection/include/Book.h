@@ -9,11 +9,12 @@ private:
     string title;
     string author;
     string genreName;
+    int userId;
 
 public:
     // Constructors
     Book();
-    Book(int bookId, string title, string author, string genreName);
+    Book(int bookId, string title, string author, string genreName, int userId);
 
     // Getters and Setters
     int getBookId();
@@ -27,4 +28,7 @@ public:
 
     string getGenreName();
     void setGenreName(string genreName);
+
+    int getUserId();
+    void setUserId(int userId);
 };

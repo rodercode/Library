@@ -2,6 +2,7 @@
 #include "BookRepository.h"
 #include <iostream>
 #include <vector>
+#include "User.h"
 
 using 
 	std::vector,
