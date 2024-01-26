@@ -15,12 +15,10 @@ void getUserInput(const string& prompt, T& input) {
 }
 
 AuthService::AuthService() {
-	std::cout << "Allocation in AuthService" << std::endl;
     userRepository = new UserRepository();
 }
 
 AuthService::~AuthService() {
-	std::cout << "Deallocation in AuthService" << std::endl;
 	delete userRepository;
 }
 

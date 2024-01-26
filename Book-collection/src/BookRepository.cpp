@@ -65,7 +65,6 @@ Book BookRepository::getById(int id) {
 
 vector<Book> BookRepository::getAll(int userId){
     vector<Book> books;
-    cout << "User id: " << userId << endl;
     
     try {
         string querySelectBooks = "SELECT * FROM books WHERE user_id = ?";
