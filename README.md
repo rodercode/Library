@@ -1,16 +1,8 @@
-# Library Management System Console Application
-Is a user-friendly software designed to help librarians efficient manage their library's collection
-of books and keep track of library operations. This application provides a range of features to streamline
-the daily tasks involved in library management
+## Book Collection Console Application
+This console application allows users to manage their book collection. Users can perform various actions such
+as adding, reading, updating, and deleting books in their collection. Additionally, new users can register an
+account and log in to the system. This README provides instructions on how to set up  and use the application.
 
-
-![tom-hermans-9BoqXzEeQqM-unsplash](https://github.com/rodercode/Library/assets/54941923/bb6af2dc-d98c-4b32-8e8b-30094cd2d9f2)
-
-
-## Features under development
-- Book Management: Easily add, edit, and delete books from the book's collection.
-                   Store essential information such as id, title, author, and genre
-                   
 
 ## Technologies and Tools
 - Visual Studio
